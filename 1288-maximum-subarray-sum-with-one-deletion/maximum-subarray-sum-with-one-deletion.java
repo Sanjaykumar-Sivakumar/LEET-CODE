@@ -1,6 +1,6 @@
 class Solution {
-    public int maximumSum(int[] arr) {
-        //int len = arr.length;
+    public int maximumSum(int[] arr) 
+    {
         int preND = arr[0];
         int preWD = arr[0];
         int max = arr[0];
