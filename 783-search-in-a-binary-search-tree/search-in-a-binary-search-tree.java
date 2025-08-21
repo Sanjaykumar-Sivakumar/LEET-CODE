@@ -15,7 +15,7 @@
  */
 class Solution {
     public TreeNode searchBST(TreeNode root, int val) {
-        if(root == null)
+        /*if(root == null)
         {
             return null;
         }
@@ -28,5 +28,21 @@ class Solution {
         if(val > root.val)
             return searchBST(root.right,val);
         return root;
+    }
+}*/
+//Iterative
+TreeNode curr = root;
+while(curr != null)
+{
+    if(curr.val == val)
+    {
+        return curr;
+    }
+    else if(val < curr.val)
+            return searchBST(curr.left,val);
+        else 
+            return searchBST(curr.right,val);
+}
+return null;
     }
 }
