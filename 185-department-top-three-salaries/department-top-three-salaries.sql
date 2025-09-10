@@ -1,7 +1,20 @@
-# Write your MySQL query statement below
-Select d.name Department ,e.name Employee,e.salary Salary
-from Department as d, Employee AS e
-where e.departmentId = d.id and
-(select count(distinct salary) from Employee
-Where salary>e.salary and departmentId = e.departmentId) <3
-Order by d.name, e.salary desc;
+WITH
+  EmployeesWithRankInDepartment AS (
+    SELECT
+      Department.name AS department,
+      Employee.name AS employee,
+      Employee.salary,
+      DENSE_RANK() OVER(
+        PARTITION BY Employee.departmentId
+        ORDER BY Employee.salary DESC
+      ) AS `rank`
+    FROM Department
+    INNER JOIN Employee
+      ON (Department.id = Employee.departmentId )
+  )
+SELECT
+  department AS Department,
+  employee AS Employee,
+  salary AS Salary
+FROM EmployeesWithRankInDepartment
+WHERE `rank` <= 3;
