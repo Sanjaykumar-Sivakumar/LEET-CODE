@@ -8,11 +8,8 @@ class Solution {
         if(csum>maxsum) maxsum = csum;
         if(csum<0){
             csum = 0;
-        }
-
-        
+        }        
        }
-
        return maxsum;
     }
 }
