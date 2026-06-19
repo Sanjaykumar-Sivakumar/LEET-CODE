@@ -9,7 +9,7 @@ class Solution {
                 nums[++i] = nums[j];
             }
         }
-        return i + 1;
+        return ++i;
     }
 }
 //         if(nums.length==0) return 0;
